@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/light_purple"
+    tools:context=".todo.TodoActivity">
+    <Button
+        android:layout_alignParentTop="true"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:gravity="right"
+        android:id="@+id/addnewtask"
+        android:text="Add new task"
+        />
+
+
+
+    <ListView
+
+        android:id="@+id/tasks_lv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+android:layout_below="@+id/addnewtask"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:transcriptMode="alwaysScroll" />
+
+
+
+
+
+
+</RelativeLayout>

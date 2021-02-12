@@ -1,4 +1,4 @@
-package com.shristi.myapplication;
+package com.shristi.myapplication.Chat;
 
 
 import android.app.Activity;
@@ -18,6 +18,8 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.shristi.myapplication.Chat.InstantMessage;
+import com.shristi.myapplication.R;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -59,10 +61,10 @@ public class ChatListAdapter extends BaseAdapter{
         }
     };
 
-    public ChatListAdapter(Activity activity,DatabaseReference ref,String name  ){
+    public ChatListAdapter(Activity activity,DatabaseReference ref,String name,String familycode){
 
         mActivity = activity;
-        mDatabaseReference = ref.child("messages");
+        mDatabaseReference = ref.child(familycode).child("messages");
         mDatabaseReference.addChildEventListener(mListener);
 
         mDisplayName = name;

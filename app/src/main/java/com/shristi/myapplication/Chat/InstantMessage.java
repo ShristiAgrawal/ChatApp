@@ -1,4 +1,4 @@
-package com.shristi.myapplication;
+package com.shristi.myapplication.Chat;
 
 class InstantMessage {
     private String message;

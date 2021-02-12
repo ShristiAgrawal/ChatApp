@@ -1,4 +1,4 @@
-package com.shristi.myapplication;
+package com.shristi.myapplication.Login;
 
 
 import android.content.Intent;
@@ -20,6 +20,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.shristi.myapplication.Chat.ChatActivity;
+import com.shristi.myapplication.FamilyCode;
+import com.shristi.myapplication.R;
 
 public class login extends AppCompatActivity {
 
@@ -62,7 +65,7 @@ public class login extends AppCompatActivity {
 
     // Executed when Register button pressed
     public void registerNewUser(View v) {
-        Intent intent = new Intent(this, com.shristi.myapplication.register.class);
+        Intent intent = new Intent(this, register.class);
         finish();
         startActivity(intent);
     }
@@ -89,7 +92,7 @@ public class login extends AppCompatActivity {
                     Log.d("Flashchat","Problem siging in: " + task.getException());
                     showErrorDialog("there was a problem signing in");
                 }else{
-                    Intent intent = new Intent(login.this,MainActivity.class);
+                    Intent intent = new Intent(login.this, FamilyCode.class);
                     finish();
                     startActivity(intent);
                 }

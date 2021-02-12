@@ -1,5 +1,6 @@
-package com.shristi.myapplication;
+package com.shristi.myapplication.Chat;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,12 +17,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.shristi.myapplication.Chat.InstantMessage;
+import com.shristi.myapplication.Login.register;
+import com.shristi.myapplication.R;
 
 
-public class MainActivity extends AppCompatActivity {
+public class ChatActivity extends AppCompatActivity {
     AutoCompleteTextView autoCompleteTextView;
-    TextView tvDisplay;
-
+    Intent intent;
     String restaurants[] = {
             "KFC",
             "Dominos",
@@ -44,11 +47,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        intent=getIntent();
         mInputText = (EditText) findViewById(R.id.messageInput);
         mSendButton = (ImageButton) findViewById(R.id.sendButton);
         mChatListView = (ListView) findViewById(R.id.chat_list_view);
         autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.actv);
-        //tvDisplay = (TextView) findViewById(R.id.tvDisplay);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, restaurants);
 
@@ -88,20 +91,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStart(){
         super.onStart();
-        mAdapter = new ChatListAdapter(this,mDatabaseReference,mDisplayName);
+        mAdapter = new ChatListAdapter(this,FirebaseDatabase.getInstance().getReference(),mDisplayName,"new");
         mChatListView.setAdapter(mAdapter);
     }
 
 
 
     private void sendMessage() {
-        Log.d("Flashchat", "Sent message");
-
-        // TODO: Grab the text the user typed in and push the message to Firebase
         String input = mInputText.getText().toString();
         if (!input.equals("")) {
             InstantMessage chat = new InstantMessage(input, mDisplayName);
-            mDatabaseReference.child("messages").push().setValue(chat);
+
+            mDatabaseReference.child("new").child("messages").push().setValue(chat);
+
             mInputText.setText("");
 
         }
@@ -109,9 +111,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStop(){
         super.onStop();
-
-
-        //to free up space
         mAdapter.cleanUp();
     }
 
